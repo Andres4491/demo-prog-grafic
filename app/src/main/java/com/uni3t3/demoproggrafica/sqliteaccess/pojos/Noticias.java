@@ -6,18 +6,18 @@ package com.uni3t3.demoproggrafica.sqliteaccess.pojos;
 
 public class Noticias {
 
-    private Long _Id;
+    private Long _id;
     private String title;
     private String content;
     private String img_string;
     private int image_resource;
 
     public Long get_Id() {
-        return _Id;
+        return _id;
     }
 
     public void set_Id(Long _Id) {
-        this._Id = _Id;
+        this._id = _Id;
     }
 
     public String getTitle() {
@@ -55,7 +55,7 @@ public class Noticias {
     @Override
     public String toString() {
         return "Noticias{" +
-                "_Id=" + _Id +
+                "_Id=" + _id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", img_string='" + img_string + '\'' +

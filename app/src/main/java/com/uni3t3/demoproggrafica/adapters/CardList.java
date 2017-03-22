@@ -2,6 +2,7 @@ package com.uni3t3.demoproggrafica.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.uni3t3.demoproggrafica.R;
+import com.uni3t3.demoproggrafica.sqliteaccess.DBHelper;
 import com.uni3t3.demoproggrafica.sqliteaccess.pojos.Noticias;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import nl.qbusict.cupboard.CupboardFactory;
 
 /**
  * Created by alvinbaltodano on 3/20/17.
@@ -21,11 +26,16 @@ import java.util.ArrayList;
 public class CardList extends RecyclerView.Adapter<CardList.ViewHolder> {
 
     Context context;
-    ArrayList<Noticias> list;
+    List<Noticias> list;
+    private DBHelper helper;
+    private SQLiteDatabase db;
 
     public CardList(Context ctx){
         context = ctx;
-        list = getList();
+        helper = new DBHelper(ctx);
+        db = helper.getWritableDatabase();
+        //list = getList();
+        list = CupboardFactory.cupboard().withDatabase(db).query(Noticias.class).list();
     }
 
     private ArrayList<Noticias> getList(){
